@@ -1,7 +1,10 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import GameDetail from './pages/GameDetail';
+import Ranking from './pages/Ranking';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="min-h-screen bg-pink-50">
@@ -20,7 +23,20 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* 后续会添加更多路由 */}
+            <Route path="/games/:id" element={<GameDetail />} />
+            <Route path="/ranking" element={<Ranking />} />
+            <Route path="*" element={
+              <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="text-center">
+                  <div className="text-6xl mb-4">404</div>
+                  <h1 className="text-2xl font-bold text-gray-900 mb-2">页面不存在</h1>
+                  <p className="text-gray-600 mb-4">抱歉，您访问的页面不存在。</p>
+                  <a href="/" className="text-indigo-600 hover:text-indigo-700 font-medium">
+                    返回首页
+                  </a>
+                </div>
+              </div>
+            } />
           </Routes>
         </main>
 
@@ -32,6 +48,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;
